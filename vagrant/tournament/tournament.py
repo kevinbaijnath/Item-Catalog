@@ -11,7 +11,12 @@ NO_RESULTS = "NONE"
 
 def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
-    return psycopg2.connect("dbname=tournament")
+    try:
+        db = psycopg2.connect("dbname=tournament")
+    except psycopg2.Error as e:
+        print("Error occured when trying to connect to the database: {0}".format(e))
+
+    return db
 
 
 def executeQuery(results, statement, data=None, data2=None):
@@ -30,9 +35,17 @@ def executeQuery(results, statement, data=None, data2=None):
         cursor.execute(statement)
 
     if results == ALL_RESULTS:
-        result = cursor.fetchall()
+        try:
+            result = cursor.fetchall()
+        except psycopg2.ProgrammingError as e:
+            print("""Error occured when trying to fetch all
+                     for query {0} \n {1}""".format(statement, e))
     elif results == ONE_RESULT:
-        result = cursor.fetchone()
+        try:
+            result = cursor.fetchone()
+        except psycopg2.ProgrammingError as e:
+            print("""Error occured when trying to fetchone
+                     for query {0} \n {1}""".format(statement, e))
     else:
         result = None
 
