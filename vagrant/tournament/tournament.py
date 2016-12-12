@@ -93,15 +93,9 @@ def playerStandings():
     statement = """
     SELECT win.id, win.name, win.wins, (win.wins+loss.losses) as matches
     FROM
-    (SELECT players.id, players.name, COUNT(matches.winner) as wins
-    FROM players LEFT JOIN matches
-    ON players.id = matches.winner
-    GROUP BY players.id) win
+    (SELECT * FROM playerwins) as win
     LEFT JOIN
-    (SELECT players.id, players.name, COUNT(matches.loser) as losses
-    FROM players LEFT JOIN matches
-    ON players.id = matches.loser
-    GROUP BY players.id) loss
+    (SELECT * FROM playerlosses) as loss
     ON win.id = loss.id
     ORDER BY win.wins;
     """
