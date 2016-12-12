@@ -21,3 +21,15 @@ CREATE TABLE matches (
     winner   integer        REFERENCES players (id),
     loser    integer        REFERENCES players (id)
 );
+
+CREATE VIEW playerwins AS
+    SELECT players.id, players.name, COUNT(matches.winner) as wins
+        FROM players LEFT JOIN matches
+        ON players.id = matches.winner
+        GROUP BY players.id;
+
+CREATE VIEW playerlosses AS
+    SELECT players.id, players.name, COUNT(matches.loser) as losses
+        FROM players LEFT JOIN matches
+        ON players.id = matches.loser
+        GROUP BY players.id;
