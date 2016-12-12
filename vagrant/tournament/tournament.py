@@ -45,12 +45,12 @@ def executeQuery(results, statement, data=None, data2=None):
 
 def deleteMatches():
     """Remove all the match records from the database."""
-    executeQuery(NO_RESULTS, "DELETE FROM matches;")
+    executeQuery(NO_RESULTS, "TRUNCATE TABLE matches;")
 
 
 def deletePlayers():
     """Remove all the player records from the database."""
-    executeQuery(NO_RESULTS, "DELETE FROM players;")
+    executeQuery(NO_RESULTS, "TRUNCATE TABLE players CASCADE;")
 
 
 def countPlayers():
