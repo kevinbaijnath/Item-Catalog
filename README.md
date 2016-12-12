@@ -29,6 +29,11 @@ vagrant ssh
 cd /vagrant/tournament
 ``` 
 
+* Run the command below to create the database and the required tables
+```sh
+psql -f tournament.sql
+```
+
 * Run the tournament tests file using the command below
 ```python
 python tournament_test.py
