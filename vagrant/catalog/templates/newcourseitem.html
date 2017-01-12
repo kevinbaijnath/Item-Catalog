@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="{{ url_for('newCourseItem',course=course)}}" method = "POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" name="description" id="description" />
+        </div>
+        <div class="form-group">
+            <label for="steps">Steps</label>
+            <input type="text" class="form-control" name="name" id="steps" />
+        </div>
+        <button type="submit" value="Create" class="btn btn-primary" />
+    </form>
+    <a href = "{{ url_for('course', course_name=course_name)}}">Cancel</a>
+{% endblock %}

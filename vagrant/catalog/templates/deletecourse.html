@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for c in courses %}
+        <h3>{{c.name}}</h3>
+    {% endfor %}
+{% endblock %}

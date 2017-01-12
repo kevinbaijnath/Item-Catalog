@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for item in course_items %}
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action category-element" data-name="{{item.name}}">{{item.name}}</button>
+        </div>
+    {% endfor %}
+    <a class="btn btn-primary" href = "{{ url_for('newCourseItem', course=course_name)}}">Create New {{course_name}} Item</a>
+{% endblock %}
