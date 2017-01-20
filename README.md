@@ -25,7 +25,7 @@ vagrant up
 vagrant ssh
 ```
 
-* Change directories to the tournament directory
+* Change directories to the catalog directory
 ```sh
 cd /vagrant/catalog
 ``` 
