@@ -1,6 +1,41 @@
 body            { font-family: sans-serif; background-color: #333333}
 
-button.list-group-item.category-element {
+button.list-group-item.category-element,
+button.list-group-item.course-item-element {
     cursor: pointer;
-    border-radius: 0;
+}
+
+.btn {
+    cursor: pointer !important;
+}
+
+.breadcrumb {
+    top: 5px;
+    background-color: #F7F7F7;
+}
+
+.offset-top {
+    margin-top: 15px;
+}
+
+label {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+input {
+    width: 100% !important;
+}
+
+.btn.btn-primary {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.list-group:first-child {
+    margin-top: 15px;
+}
+
+#signInButton {
+    right: 20px;
 }

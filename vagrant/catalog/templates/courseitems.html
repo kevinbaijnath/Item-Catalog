@@ -1,9 +1,17 @@
 {% extends "base.html" %}
+
+{% block breadcrumbs %}
+  <a class="breadcrumb-item" href="{{ url_for('courses') }}">Courses</a>
+  <span class="breadcrumb-item active">{{course_name}}</span>
+{% endblock %}
+
 {% block content %}
     {% for item in course_items %}
         <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action category-element" data-name="{{item.name}}">{{item.name}}</button>
+            <button type="button" class="list-group-item list-group-item-action course-item-element" data-name="{{item.name}}" data-course-name="{{course_name}}">{{item.name}}</button>
         </div>
     {% endfor %}
-    <a class="btn btn-primary" href = "{{ url_for('newCourseItem', course=course_name)}}">Create New {{course_name}} Item</a>
+    {% if login_session["user_id"] %}
+        <a class="btn btn-primary" href = "{{ url_for('newCourseItem', course_name=course_name)}}">Create New {{course_name}} Item</a>
+    {% endif %}
 {% endblock %}

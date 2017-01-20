@@ -1,4 +1,4 @@
-# Tournament
+# Item Catalog
 
 This application depicts a swiss style tournament using postgres to store data and python to manipulate the data
 
@@ -8,8 +8,9 @@ This application depicts a swiss style tournament using postgres to store data a
 
 Please make sure that the items below are installed
 
+* [Python](https://www.python.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 ### Installing
 
@@ -26,23 +27,23 @@ vagrant ssh
 
 * Change directories to the tournament directory
 ```sh
-cd /vagrant/tournament
+cd /vagrant/catalog
 ``` 
 
 * Run the command below to create the database and the required tables
 ```sh
-psql -f tournament.sql
+python database_setup.py
 ```
 
-* Run the tournament tests file using the command below
-```python
-python tournament_test.py
+* Run the command below to populate the database with course entries
+```sh
+python populatecourses.py
 ```
 
-## Built With
-
-* [Python](https://www.python.org/) - Language used
-* [Postgres](https://www.postgresql.org/) - Relational database used
+* Run the project file
+```sh
+python project.py
+```
 
 ## License
 
@@ -50,5 +51,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* The team at Udacity for their intro to relational databases course and their assistance
-* StackOverflow
+* The team at Udacity
+* Stack Overflow

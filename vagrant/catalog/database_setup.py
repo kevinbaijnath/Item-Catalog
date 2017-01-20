@@ -5,10 +5,21 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(200), nullable=False)
+    email = Column(String(100), nullable=False)
+    picture = Column(String(400))
+
+
 class Course(Base):
     __tablename__ = 'course'
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -16,6 +27,7 @@ class Course(Base):
             'name': self.name,
             'id': self.id,
         }
+
 
 class CourseItem(Base):
     __tablename__ = 'course_item'
@@ -25,6 +37,8 @@ class CourseItem(Base):
     steps = Column(String(1000), nullable=False)
     course_id = Column(Integer, ForeignKey('course.id'))
     course = relationship(Course)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -35,6 +49,5 @@ class CourseItem(Base):
             'steps': self.steps,
         }
 
-#### END OF FILE ###
 engine = create_engine('sqlite:///courses.db')
 Base.metadata.create_all(engine)

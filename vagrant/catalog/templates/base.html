@@ -4,22 +4,47 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta id="pydata" data-state="{{STATE}}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   </head>
   <body>
   <div class="container-fluid">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-      <a class="navbar-brand" href="{{url_for('courses')}}">Food Catalog</a>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded row">
+        <nav class="breadcrumb {{ "col-9" if login_session["name"] else "col-11"}} ">
+          {% block breadcrumbs %}{% endblock %}
+        </nav>
+        {% if login_session["name"] %}
+          <div class="col-3 text-right">
+            <span>{{login_session["name"]}} | </span>
+            <span><a href="{{url_for('logout')}}">Logout</a></span>
+          </div>
+        {% else %}
+          <div id="signInButton" class="col-1">
+            <span class="g-signin"
+              data-scope="openid email"
+              data-clientid="167803776808-q1rtjhmpia42ijof7bdr3drfrdmn72tu.apps.googleusercontent.com"
+              data-redirecturi="postmessage"
+              data-accesstype="offline"
+              data-cookiepolicy="single_host_origin"
+              data-callback="signInCallback"
+              data-approvalprompt="force">
+            </span>
+          </div>
+        {% endif %}
+      <!--<a class="navbar-brand" href="{{url_for('courses')}}">Food Catalog</a>-->
     </nav>
-    {% block content %}{% endblock %}
+    <div class="offset-top">
+      {% block content %}{% endblock %}
+    </div>
   </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="//apis.google.com/js/platform.js?onload=start"></script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
   </body>
 </html>

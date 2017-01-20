@@ -1,19 +1,28 @@
 {% extends "base.html" %}
+
+{% block breadcrumbs %}
+  <a class="breadcrumb-item" href="{{ url_for('courses') }}">Courses</a>
+  <a class="breadcrumb-item" href="{{ url_for('course',course_name=course_name) }}">{{course_name}}</a>
+  <span class="breadcrumb-item active">New {{course_name}} Item</span>
+{% endblock %}
+
 {% block content %}
-    <form action="{{ url_for('newCourseItem',course=course)}}" method = "POST">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" />
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" class="form-control" name="description" id="description" />
-        </div>
-        <div class="form-group">
-            <label for="steps">Steps</label>
-            <input type="text" class="form-control" name="name" id="steps" />
-        </div>
-        <button type="submit" value="Create" class="btn btn-primary" />
-    </form>
-    <a href = "{{ url_for('course', course_name=course_name)}}">Cancel</a>
+    <div class="card">
+        <form action="{{ url_for('newCourseItem',course_name=course_name)}}" method = "POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" name="description" id="description" />
+            </div>
+            <div class="form-group">
+                <label for="steps">Steps</label>
+                <textarea class="form-control" id="steps" name="steps" rows="10"></textarea>
+            </div>
+            <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+            <a class="btn btn-primary" href="{{ url_for('course', course_name=course_name)}}">Cancel</a>
+        </form>
+    </div>
 {% endblock %}

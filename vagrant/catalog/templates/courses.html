@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+
+{% block breadcrumbs %}
+  <a class="breadcrumb-item" href="{{ url_for('courses') }}">Courses</a>
+{% endblock %}
+
 {% block content %}
+    <div class="course-list">
     {% for c in courses %}
         <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action category-element" data-name="{{c.name}}">{{c.name}}</button>
+            <button type="button" class="list-group-item list-group-item-action category-element" data-name="{{ c.name }}">{{c.name}}</button>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
