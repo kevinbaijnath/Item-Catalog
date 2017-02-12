@@ -49,5 +49,5 @@ class CourseItem(Base):
             'steps': self.steps,
         }
 
-engine = create_engine('postgresql://catalog@localhost/itemcatalog')
+engine = create_engine('postgresql://catalog:test@localhost/itemcatalog')
 Base.metadata.create_all(engine)
