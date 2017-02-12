@@ -13,7 +13,7 @@ from helpers.user import createUser, getUserId
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///courses.db')
+engine = create_engine('postgresql://catalog:test@localhost/itemcatalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
