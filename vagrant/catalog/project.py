@@ -18,7 +18,7 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-client_secrets = json.loads(open('client_secrets.json', 'r').read())
+client_secrets = json.loads(open('/var/www/html/client_secrets.json', 'r').read())
 CLIENT_ID = client_secrets['web']['client_id']
 
 
