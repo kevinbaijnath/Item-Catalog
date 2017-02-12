@@ -1,3 +1,3 @@
 import sys
 sys.path.insert(0, '/var/www/html')
-from project import app
+from project import app as application
