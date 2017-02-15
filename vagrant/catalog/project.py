@@ -13,12 +13,13 @@ from helpers.user import createUser, getUserId
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///courses.db')
+engine = create_engine('postgresql://catalog:test@localhost/itemcatalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-client_secrets = json.loads(open('client_secrets.json', 'r').read())
+CLIENT_SECRETS_PATH = '/var/www/html/client_secrets.json'
+client_secrets = json.loads(open(CLIENT_SECRETS_PATH, 'r').read())
 CLIENT_ID = client_secrets['web']['client_id']
 
 
@@ -178,7 +179,7 @@ def gconnect():
         return makeJsonResponse('Data parameter was not supplied', 400)
 
     try:
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets(CLIENT_SECRETS_PATH, scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
