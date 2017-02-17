@@ -1,6 +1,6 @@
 # Item Catalog
 
-This application depicts a swiss style tournament using postgres to store data and python to manipulate the data
+Item Catalog is a CRUD application built using the Flask framework in Python. Authentication is provided via OAuth and all data is stored within a PostgreSQL database. Provided various forms of UI such as breadcrumbs, enabling the users to interact with the application with ease.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ Please make sure that the items below are installed
 ```sh
 vagrant up
 ```
-* Run the command below to log into the machine 
+* Run the command below to log into the machine
 ```sh
 vagrant ssh
 ```
@@ -28,7 +28,7 @@ vagrant ssh
 * Change directories to the catalog directory
 ```sh
 cd /vagrant/catalog
-``` 
+```
 
 * Run the command below to create the database and the required tables
 ```sh
